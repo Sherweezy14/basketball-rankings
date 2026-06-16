@@ -8,7 +8,7 @@ function getAuthHeaders(){
     
 }
 
-// Get all Player info from the Database
+// Get all Players info from the Database
 export async function getPlayers(){
     
     try {
