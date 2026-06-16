@@ -289,7 +289,7 @@ app.put("/articles/update/:id",auth, async(req,res)=>{
 
 });
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
   console.log("server Started");
 });
 
