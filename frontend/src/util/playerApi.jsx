@@ -1,4 +1,4 @@
-
+const API_URL = import.meta.env.API_URL;
 
 function getAuthHeaders(){
     const token = localStorage.getItem("token")
@@ -12,7 +12,7 @@ function getAuthHeaders(){
 export async function getPlayers(){
     
     try {
-        const res = await fetch(`http://localhost:3001/players`);
+        const res = await fetch(`${API_URL}/players`);
         return await res.json();    
     } catch (error) {
         console.log(error)+ "players not found";
@@ -22,7 +22,7 @@ export async function getPlayers(){
 //get one player
 export async function getPlayer(id){
     try{
-      const res =  await fetch(`http://localhost:3001/player/${id}`);
+      const res =  await fetch(`${API_URL}/player/${id}`);
       const data = await res.json() ;
       return data;
     }catch{
@@ -33,7 +33,7 @@ export async function getPlayer(id){
 //Create a new player
 export async function createPlayer(player){
     try {
-        const res = await fetch("http://localhost:3001/createPlayer",{
+        const res = await fetch(`${API_URL}/createPlayer`,{
                                 method: "POST",
                                 headers: getAuthHeaders(),
                                 body: JSON.stringify(player)
@@ -51,7 +51,7 @@ export async function createPlayer(player){
 export async function updatePlayer(player,id){
 
     try{
-        const res = await fetch(`http://localhost:3001/updatePlayer/${id}`,{
+        const res = await fetch(`${API_URL}/updatePlayer/${id}`,{
         headers: getAuthHeaders(),
         method: "PUT",
         body: JSON.stringify(player)
@@ -75,7 +75,7 @@ export async function deletePlayer(id){
       }
 
     try{
-        const res = fetch(`http://localhost:3001/delete/${id}`,{
+        const res = fetch(`${API_URL}/delete/${id}`,{
                     headers: getAuthHeaders(),
                     method: "DELETE"
      });
@@ -90,7 +90,7 @@ export async function deletePlayer(id){
 export async function createArticle(article){
    
     try {
-        const res = await fetch("http://localhost:3001/createarticle",{
+        const res = await fetch(`${API_URL}/createarticle`,{
             method: "POST",
             body: JSON.stringify(article),
             headers: getAuthHeaders(),
@@ -108,7 +108,7 @@ export async function createArticle(article){
 export async function getArticles(){
     
     try {
-        const res = await fetch("http://localhost:3001/news");
+        const res = await fetch(`${API_URL}/news`);
         const data = await res.json();
         return data;
     } catch (error) {
@@ -127,7 +127,7 @@ export async function deleteArticle(id){
         return;
       }
     try {
-        const res = await fetch(`http://localhost:3001/articles/delete/${id}`,{
+        const res = await fetch(`${API_URL}/articles/delete/${id}`,{
             method:"DELETE",
             headers: getAuthHeaders()
         }) 
@@ -143,7 +143,7 @@ export async function deleteArticle(id){
 
 export async function getArticle(id){
     try {
-        const res = await fetch(`http://localhost:3001/articles/${id}`);
+        const res = await fetch(`${API_URL}/articles/${id}`);
         const article =  await res.json();
         if(!article){
             console.log("can not find article")
@@ -158,7 +158,7 @@ export async function getArticle(id){
 export async function updateArticle(id,article){
 
     try {
-        const res = await fetch(`http://localhost:3001/articles/update/${id}`,{
+        const res = await fetch(`${API_URL}/articles/update/${id}`,{
             method:"PUT",
             body: JSON.stringify(article),
             headers: getAuthHeaders()
@@ -173,7 +173,7 @@ export async function updateArticle(id,article){
 //Create a user
 export async function createUser(user){
     try {
-        const res = await fetch("http://localhost:3001/createuser",{
+        const res = await fetch(`${API_URL}/createuser`,{
             headers: getAuthHeaders(),
             method:"POST",
             body: JSON.stringify(user),
@@ -188,7 +188,7 @@ export async function createUser(user){
 //Login a user and get token
 export async function loginUser(login){
     try {
-        const res = await fetch("http://localhost:3001/login",{
+        const res = await fetch(`${API_URL}/login`,{
             headers: getAuthHeaders(),
             body: JSON.stringify(login),
             method: "POST"
