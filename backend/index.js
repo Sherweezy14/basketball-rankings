@@ -20,7 +20,7 @@ const upload = multer({ dest: "uploads/" });
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_CLOUD_NAME,
-  api_secret: pprocess.env.CLOUDINARY_CLOUD_NAME,,
+  api_secret: process.env.CLOUDINARY_CLOUD_NAME,
 });
 
 console.log(process.env.CLOUDINARY_CLOUD_NAME,process.env.CLOUDINARY_CLOUD_NAME,process.env.CLOUDINARY_CLOUD_NAME,"sherrwyn")
