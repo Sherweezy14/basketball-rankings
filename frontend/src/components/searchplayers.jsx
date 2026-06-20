@@ -47,7 +47,7 @@ function SearchPlayers(){
             onFocus={()=>setFocus(true)}
             onBlur={()=>{ setTimeout(()=> setFocus(false),200)}}
             placeholder="Search players..."
-            className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-2"
+            className="w-full rounded-xl mb-5 border border-slate-300 bg-slate-50 px-4 py-2 lg:mb-0"
           />
     
           {isFocused && results.length > 0 && (

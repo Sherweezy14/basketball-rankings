@@ -30,10 +30,11 @@ function UserLogin(){
             <input name="password" className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-2" placeholder="Password" onChange={change} type="password" />
             <button className="bg-purple-700 text-white font-bold px-4 py-2 rounded-xl" onClick={logInUserInput}> Login </button>
         </form>
-    </> ): (<>
-            <p> {"Hello " + userLoggedIn.name.split(" ")[0]}</p>
-            <button className="bg-red-700 text-white font-bold px-3 py-1.5 rounded-xl" onClick={logOutUser}> LogOut </button>
-           </>)
+    </> ): (<div className="flex items-center gap-8">
+            <p className="hidden lg:block"> {"Hello " + userLoggedIn.name.split(" ")[0]}</p>
+            <p className="text-red-500 mt-5 text-1xl lg:hidden" onCanPlay={logOutUser}> Sign Out</p>
+            <button className="hidden lg:block bg-red-700 text-white font-bold px-3 py-1.5 rounded-xl" onClick={logOutUser}> LogOut </button>
+           </div>)
 
     )
 

@@ -30,14 +30,15 @@ function Navbar() {
           <Link to="/articles" className="font-semibold text-slate-700 hover:text-purple-700">Articles</Link>
           <Link to="/" className="font-semibold text-slate-700 hover:text-purple-700">Events</Link>
           <SearchPlayers className="border-1"/>
-          <UserLogin className=""/>
-          {token && (<Link to="/createplayer" className="bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl">+ Add Player</Link>)}
           
+          {token && (<Link to="/createplayer" className="bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl lg:mt-0">+ Add Player</Link>)}
+          
+          <UserLogin className=""/>
         </div>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="text-3xl lg:hidden text-6xl font-bold text-slate-900"
+          className="text-7xl lg:hidden text-6xl font-bold text-slate-900"
         >
           ☰
         </button>
@@ -59,9 +60,9 @@ function Navbar() {
 
           <SearchPlayers className="border-1 "/>
 
-          <UserLogin className=""/>
           {token && (<Link to="/createplayer" className="bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl">+ Add Player</Link>)}
-
+          
+          <UserLogin className=""/>
         </div>
       )}
     </nav>
