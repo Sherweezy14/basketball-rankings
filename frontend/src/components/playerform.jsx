@@ -13,7 +13,7 @@ function PlayerForm({initialValues,submit,buttonText}){
         Height: initialValues?.Height || "",
         Image: initialValues?.Image || ""
     });
-
+    console.log(value)
     function handleChange(event){
         setValue({...value,
              [event.target.name] : event.target.value})

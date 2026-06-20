@@ -19,10 +19,11 @@ const upload = multer({ dest: "uploads/" });
 //Config Cloudinary with env varibales
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  api_key: process.env.CLOUDINARY_CLOUD_NAME,
+  api_secret: pprocess.env.CLOUDINARY_CLOUD_NAME,,
 });
 
+console.log(process.env.CLOUDINARY_CLOUD_NAME,process.env.CLOUDINARY_CLOUD_NAME,process.env.CLOUDINARY_CLOUD_NAME,"sherrwyn")
 
 //Upload Image and return url for it with cloudinary
 app.post("/upload-image", uploadImg.single("image"), async (req, res) => {
