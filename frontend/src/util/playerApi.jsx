@@ -9,6 +9,23 @@ function getAuthHeaders(){
     Authorization: `Bearer ${token}`}
     
 }
+//Send img file to server and return back the link to the img on cloudinary
+export async function uploadImage(file) {
+    const token = localStorage.getItem("token");
+  
+    const formData = new FormData();
+    formData.append("image", file);
+  
+    const res = await fetch(`${API_URL}/upload-image`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+  
+    return await res.json();
+  }
 
 // Get all Players info from the Database
 export async function getPlayers(){

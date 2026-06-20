@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-
+import { uploadImage } from "../util/playerApi";
 
 function PlayerForm({initialValues,submit,buttonText}){
     const [value,setValue] = useState({
@@ -17,6 +17,13 @@ function PlayerForm({initialValues,submit,buttonText}){
     function handleChange(event){
         setValue({...value,
              [event.target.name] : event.target.value})
+    }
+
+    async function handleImgChange(event){
+
+      const res = await uploadImage(event.target.files[0])
+      setValue({...value,Image:res.imageUrl})
+    
     }
 
     function formSave(event){
@@ -42,7 +49,7 @@ function PlayerForm({initialValues,submit,buttonText}){
           </div>
     
           <div className="mt-5">
-            <FormInput label="Image URL" name="Image" value={value.Image} onChange={handleChange} />
+            <FormInput label="Image URL" type="file" accept="image/*" name="Image" value={value.Image} onChange={handleImgChange} />
           </div>
     
           <div className="mt-8 flex justify-end">
@@ -57,16 +64,18 @@ function PlayerForm({initialValues,submit,buttonText}){
       );
     }
     
-    function FormInput({ label, name, value, onChange }) {
+    function FormInput({ label, name, value, onChange, type, accept }) {
       return (
         <label className="block">
           <span className="text-sm font-bold text-slate-700">{label}</span>
     
           <input
             name={name}
-            value={value}
+            value={type==="file" ? undefined: value}
             onChange={onChange}
             placeholder={label}
+            type={ type || "text"}
+            accept={accept}
             className="mt-2 w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none focus:border-purple-600 focus:ring-4 focus:ring-purple-100"
           />
         </label>

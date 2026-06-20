@@ -3,16 +3,42 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const auth = require("./middleware/auth")
-
+const createSlug = require("./util/slugify");
+const cloudinary = require("cloudinary").v2;
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-const createSlug = require("./util/slugify");
 const multer = require("multer");
+const uploadImg = multer({ storage: multer.memoryStorage() });
 const upload = multer({ dest: "uploads/" });
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+
+
+//Config Cloudinary with env varibales
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+
+//Upload Image and return url for it with cloudinary
+app.post("/upload-image", uploadImg.single("image"), async (req, res) => {
+  try {
+    const base64 = req.file.buffer.toString("base64");
+    const dataUri = `data:${req.file.mimetype};base64,${base64}`;
+    console.log(req.file)
+    const result = await cloudinary.uploader.upload(dataUri, {
+      folder: "hoop-recruit",
+    });
+
+    res.json({ imageUrl: result.secure_url });
+  } catch (err) {
+    res.status(500).json({ message: "Image upload failed" +err });
+  }
+});
 
 // 1. Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
