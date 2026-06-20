@@ -32,7 +32,7 @@ function UserLogin(){
         </form>
     </> ): (<div className="flex items-center gap-8">
             <p className="hidden lg:block"> {"Hello " + userLoggedIn.name.split(" ")[0]}</p>
-            <p className="text-red-500 mt-5 text-1xl lg:hidden" onCanPlay={logOutUser}> Sign Out</p>
+            <p className="text-red-500 mt-5 text-1xl lg:hidden" onClick={logOutUser}> Sign Out</p>
             <button className="hidden lg:block bg-red-700 text-white font-bold px-3 py-1.5 rounded-xl" onClick={logOutUser}> LogOut </button>
            </div>)
 

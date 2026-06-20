@@ -11,7 +11,7 @@ function Navbar() {
 
   return (
     <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
-      <div className="h-48 lg:max-w-7xl mx-auto pl-6 pr-20 h-20 flex items-center justify-between">
+      <div className="h-48 justify-between  lg:max-w-7xl mx-auto pl-6 pr-20 h-20 flex items-center ">
         <Link to="/" className="lg:hidden flex items-center gap-3">
           <img src={logoImg} alt="HoopScout" className="h-44 lg:h-18 w-auto" />
           <div>
