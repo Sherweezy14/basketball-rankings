@@ -33,11 +33,11 @@ function TopPlayers({ players }) {
           <Link
             key={player._id}
             to={`/player/${player._id}/${player.Slug}`}
-            className={`bg-white border border-slate-200 rounded-3xl p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all
+            className={`bg-white border text-center border-slate-200 rounded-3xl p-5 shadow-sm lg:text-start hover:shadow-md hover:-translate-y-1 transition-all
            ${index > 0  ? "hidden md:block": ""} ${index > 1 ? "md:hidden lg:block":""}`}
           >
             <div className="relative">
-              <div className="aspect-[3/4] rounded-2xl bg-slate-100 overflow-hidden flex items-center justify-center">
+              <div className="aspect-[1/1] lg:aspect-[3/4]  rounded-2xl bg-slate-100 overflow-hidden flex items-center justify-center">
                 {player.Image ? (
                   <img
                     src={player.Image}
@@ -45,30 +45,30 @@ function TopPlayers({ players }) {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <span className="text-5xl font-black text-purple-700">
+                  <span className="text-4xl font-black text-purple-700 ">
                     {player.Name?.charAt(0)}
                   </span>
                 )}
               </div>
 
-              <span className="absolute top-3 left-3 bg-amber-400 text-purple-950 font-black px-3 py-1 rounded-full">
+              <span className="text-3xl absolute top-3 left-3 bg-amber-400 text-purple-950 font-black px-3 py-1 rounded-full lg:text-xs">
                 #{player.Rank}
               </span>
             </div>
 
-            <h3 className="mt-4 text-lg font-black text-slate-900">
+            <h3 className="mt-4 text-5xl font-black text-slate-900 lg:text-xs">
               {player.Name}
             </h3>
 
-            <p className="text-sm text-slate-500">
+            <p className="text-3xl text-slate-500 lg:text-xs">
               {player.Position || "N/A"} • Class of {player.Class || "N/A"}
             </p>
 
-            <p className="mt-3 text-sm font-semibold text-slate-700">
+            <p className="mt-3 text-3xl font-semibold text-slate-700 lg:text-xs">
               {player.HighSchool || "High School N/A"}
             </p>
 
-            <p className="mt-2 inline-flex rounded-full bg-purple-100 text-purple-700 px-3 py-1 text-xs font-bold">
+            <p className="mt-2 inline-flex rounded-full bg-purple-100 text-purple-700 px-3 py-1 text-3xl font-bold lg:text-xs">
               {player.Commitment || "Undecided"}
             </p>
           </Link>
