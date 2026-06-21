@@ -1,6 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL;
-import { authUser } from "../context/tokencontext";
-const {logOut} = authUser()
+
 
 function getAuthHeaders(){
     const token = localStorage.getItem("token")
@@ -25,9 +24,7 @@ export async function uploadImage(file) {
       body: formData,
     });
 
-    if(res.status=== 401){
-        logOut()
-    }
+    
     return await res.json();
   }
 
@@ -61,9 +58,7 @@ export async function createPlayer(player){
                                 headers: getAuthHeaders(),
                                 body: JSON.stringify(player)
                      });
-        if(res.status=== 401){
-        logOut()
-        }
+
         return res;             
     } catch (error) {
             console.log(error);
@@ -82,9 +77,7 @@ export async function updatePlayer(player,id){
         body: JSON.stringify(player)
         });
 
-        if(res.status=== 401){
-            logOut()
-            }
+       
     }catch(error){
         console.log("Can not update player" + error);
     }    
@@ -108,9 +101,7 @@ export async function deletePlayer(id){
                     headers: getAuthHeaders(),
                     method: "DELETE"
         });
-        if(res.status=== 401){
-            logOut()
-            }
+
 
         return JSON.stringify(res);
     }catch(err){
@@ -129,9 +120,6 @@ export async function createArticle(article){
             headers: getAuthHeaders(),
         }) 
 
-        if(res.status=== 401){
-            logOut()
-        }
 
     } catch (error) {
       console.log(error);  
@@ -169,9 +157,7 @@ export async function deleteArticle(id){
             method:"DELETE",
             headers: getAuthHeaders()
         }) 
-        if(res.status=== 401){
-            logOut()
-        }
+
 
         const deleteArticle = res.json();
         return deleteArticle;
@@ -190,9 +176,7 @@ export async function getArticle(id){
             console.log("can not find article")
         }
 
-        if(res.status=== 401){
-        logOut()
-        }
+
         return article
     } catch (error) {
         console.log(error);
@@ -208,9 +192,6 @@ export async function updateArticle(id,article){
             headers: getAuthHeaders()
         })
 
-        if(res.status=== 401){
-        logOut()
-        }
         return res.json();
     } catch (error) {
         console.log(error)
@@ -226,10 +207,8 @@ export async function createUser(user){
             body: JSON.stringify(user),
         })
 
-        if(res.status=== 401){
-            logOut()
-        }
-        
+
+
         return await res.json()
 
     } catch (error) {
