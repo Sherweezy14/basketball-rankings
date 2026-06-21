@@ -13,16 +13,25 @@ function PlayerForm({initialValues,submit,buttonText}){
         Height: initialValues?.Height || "",
         Image: initialValues?.Image || ""
     });
-    console.log(value)
+
+    const [isuploading,setIsUploading] = useState(false)
+
     function handleChange(event){
         setValue({...value,
              [event.target.name] : event.target.value})
     }
 
     async function handleImgChange(event){
-
-      const res = await uploadImage(event.target.files[0])
-      setValue({...value,Image:res.imageUrl})
+      try {
+        setIsUploading(true);
+        const res = await uploadImage(event.target.files[0])
+        setValue({...value,Image:res.imageUrl})
+      } catch (error) {
+          console.log("upload fail ",error)
+      }finally{
+        setIsUploading(false)
+      }
+      
     
     }
 
@@ -55,9 +64,10 @@ function PlayerForm({initialValues,submit,buttonText}){
           <div className="mt-8 flex justify-end">
             <button
               type="submit"
+              disabled={isuploading}
               className="bg-purple-700 hover:bg-purple-800 text-white font-bold px-6 py-3 rounded-xl shadow-sm"
             >
-              {buttonText}
+              {isuploading ? "uploading":buttonText}
             </button>
           </div>
         </form>
@@ -76,6 +86,7 @@ function PlayerForm({initialValues,submit,buttonText}){
             placeholder={label}
             type={ type || "text"}
             accept={accept}
+            
             className="mt-2 w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none focus:border-purple-600 focus:ring-4 focus:ring-purple-100"
           />
         </label>

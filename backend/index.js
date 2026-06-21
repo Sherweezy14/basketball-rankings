@@ -252,8 +252,6 @@ app.get("/players", async (req, res) => {
 app.put("/updateplayer/:id", auth, async(req,res)=>{
 
   try {
-    console.log(req.params.id);
-    console.log("sherwyn");
     const player = await Player.findByIdAndUpdate(req.params.id,req.body,{new: true});
     
     if(!player){
