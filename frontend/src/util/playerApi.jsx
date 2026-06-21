@@ -1,6 +1,6 @@
 const API_URL = import.meta.env.VITE_API_URL;
-
-
+import { authUser } from "../context/tokencontext";
+const {logOut} = authUser()
 
 function getAuthHeaders(){
     const token = localStorage.getItem("token")
@@ -9,6 +9,7 @@ function getAuthHeaders(){
     Authorization: `Bearer ${token}`}
     
 }
+
 //Send img file to server and return back the link to the img on cloudinary
 export async function uploadImage(file) {
     const token = localStorage.getItem("token");
@@ -23,7 +24,10 @@ export async function uploadImage(file) {
       },
       body: formData,
     });
-  
+
+    if(res.status=== 401){
+        logOut()
+    }
     return await res.json();
   }
 
@@ -57,12 +61,14 @@ export async function createPlayer(player){
                                 headers: getAuthHeaders(),
                                 body: JSON.stringify(player)
                      });
-
+        if(res.status=== 401){
+        logOut()
+        }
         return res;             
     } catch (error) {
             console.log(error);
      }
-    
+ 
      return res;
 }
 
@@ -75,6 +81,10 @@ export async function updatePlayer(player,id){
         method: "PUT",
         body: JSON.stringify(player)
         });
+
+        if(res.status=== 401){
+            logOut()
+            }
     }catch(error){
         console.log("Can not update player" + error);
     }    
@@ -97,8 +107,12 @@ export async function deletePlayer(id){
         const res = fetch(`${API_URL}/delete/${id}`,{
                     headers: getAuthHeaders(),
                     method: "DELETE"
-     });
-     return JSON.stringify(res);
+        });
+        if(res.status=== 401){
+            logOut()
+            }
+
+        return JSON.stringify(res);
     }catch(err){
         console.log("could not delete player")
     } 
@@ -114,6 +128,11 @@ export async function createArticle(article){
             body: JSON.stringify(article),
             headers: getAuthHeaders(),
         }) 
+
+        if(res.status=== 401){
+            logOut()
+        }
+
     } catch (error) {
       console.log(error);  
     }
@@ -150,6 +169,9 @@ export async function deleteArticle(id){
             method:"DELETE",
             headers: getAuthHeaders()
         }) 
+        if(res.status=== 401){
+            logOut()
+        }
 
         const deleteArticle = res.json();
         return deleteArticle;
@@ -167,7 +189,10 @@ export async function getArticle(id){
         if(!article){
             console.log("can not find article")
         }
-        
+
+        if(res.status=== 401){
+        logOut()
+        }
         return article
     } catch (error) {
         console.log(error);
@@ -182,7 +207,10 @@ export async function updateArticle(id,article){
             body: JSON.stringify(article),
             headers: getAuthHeaders()
         })
-        console.log(res)
+
+        if(res.status=== 401){
+        logOut()
+        }
         return res.json();
     } catch (error) {
         console.log(error)
@@ -197,7 +225,12 @@ export async function createUser(user){
             method:"POST",
             body: JSON.stringify(user),
         })
-    return await res.json()
+
+        if(res.status=== 401){
+            logOut()
+        }
+        
+        return await res.json()
 
     } catch (error) {
         console.log(error);
