@@ -14,6 +14,7 @@ function Sidebar() {
     { label: "Messages", path: "/messages", icon: "✉", badge: 0 },
     { label: "Settings", path: "/settings", icon: "⚙" },
     { label: "Create User", path: "/createUser", icon: "!" },
+    { label: "Login User", path: "/login", icon: "!" },
   ];
 
   return (

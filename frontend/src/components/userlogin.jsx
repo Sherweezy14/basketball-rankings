@@ -4,10 +4,23 @@ import {authUser} from "../context/tokencontext"
 
 function UserLogin(){
     const[data,setData] = useState({})
+    const[errors,setErrors] = useState(null)
     const{token, userLoggedIn, logIn, logOut}  = authUser()
+    const regexTest = {email:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                   password:/^(?=.*[A-Za-z])(?=.*\d).{8,}$/}
 
     function change(event){
+        // Check each field input against regex for err message remove err if field input is empty string
+        regexTest[event.target.name].test(event.target.value)? setErrors({...errors,[event.target.name]:false}): setErrors({...errors,[event.target.name]:true}) 
+        if(event.target.value === ""){
+            const {[event.target.name]: value, ...leftOver} = errors
+            setErrors(leftOver)
+
+        } 
+
+
         setData({...data,[event.target.name]:event.target.value})
+
     }
 
     async function logInUserInput(event){
@@ -25,9 +38,11 @@ function UserLogin(){
     }
 
     return (!token ? ( <>
-        <form className="flex items-center gap-2 " action="Submit">
+        <form className="flex flex-col items-center gap-2 " action="Submit">
             <input name="email" className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-2" placeholder="Email" onChange={change} type="text" />
+            {errors?.email && <p className="text-red-600"> Must be an email.</p>}
             <input name="password" className="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-2" placeholder="Password" onChange={change} type="password" />
+            {errors?.password && <p className="text-red-600"> Password must be at least 8 characters and include a letter and a number.</p>}
             <button className="bg-purple-700 text-white font-bold px-4 py-2 rounded-xl" onClick={logInUserInput}> Login </button>
         </form>
     </> ): (<div className="flex items-center gap-8">

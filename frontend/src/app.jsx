@@ -15,6 +15,7 @@ import ReadNewsPage from "./pages/readnewspage";
 import UpdateArticlePage from "./pages/updatearticle";
 import CreateUserPage from "./pages/createUserPage";
 import { TokenAuth } from "./context/tokencontext";
+import LogInPage from "./pages/LogInPage";
 function App(){
   
     return(
@@ -33,6 +34,7 @@ function App(){
             <Route path="/articles/update/:id" element={<UpdateArticlePage/>}/>
             <Route path="/articles" element={<NewsPage/>}/>
             <Route path="createUser" element={<CreateUserPage />}/>
+            <Route path="/login" element={<LogInPage />}/>
             <Route path="*" element={<PageNotFound/>}/>
           </Routes>
           <Footer/>
