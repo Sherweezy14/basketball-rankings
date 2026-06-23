@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
-import logoImg from "/img/logo1.png";
+import logoImg from "../../img/Logo1.png";
 
 function Sidebar() {
   const links = [
