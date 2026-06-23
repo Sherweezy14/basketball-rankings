@@ -1,6 +1,6 @@
 import React from "react";
 import "./app.css";
-import {Routes, Route} from "react-router-dom";
+import {Outlet,Routes, Route} from "react-router-dom";
 import Home from "./pages/home";
 import PlayerPage from "./pages/playerPage";
 import CreatePlayerPage from "./pages/createPlayerPage"
@@ -17,28 +17,47 @@ import CreateUserPage from "./pages/createUserPage";
 import { TokenAuth } from "./context/tokencontext";
 import LogInPage from "./pages/LogInPage";
 function App(){
-  
+
+    function Layout() {
+      return (
+        <>
+          <main className="lg:ml-64">
+            <NavBar />
+
+            <div className="flex">
+              <Sidebar />
+
+              <main className="flex-1">
+                <Outlet />
+              </main>
+            </div>
+            <Footer></Footer>
+          </main> 
+          
+        </>
+      );
+    }
     return(
       <TokenAuth>
-        <Sidebar />
-
-        <main className="lg:ml-64">
-          <NavBar/>
+        
           <Routes>
-            <Route path="/" element={<Home/>}/>  
-            <Route path="/player/:id/:slug" element={<PlayerPage/>}/>
-            <Route path="/createPlayer" element={<CreatePlayerPage/>} />
-            <Route path="/updatePlayer/:id" element={<UpdatePlayerPage/>}/>
-            <Route path="/article/new" element={<CreateNewsPage/>}/>
-            <Route path="/articles/:id" element={<ReadNewsPage/>}/>
-            <Route path="/articles/update/:id" element={<UpdateArticlePage/>}/>
-            <Route path="/articles" element={<NewsPage/>}/>
-            <Route path="createUser" element={<CreateUserPage />}/>
-            <Route path="/login" element={<LogInPage />}/>
-            <Route path="*" element={<PageNotFound/>}/>
+            //Roots with lauout
+            <Route path="/" element={<Layout/>}> 
+              <Route index element={<Home />} /> 
+              <Route path="/player/:id/:slug" element={<PlayerPage/>}/>
+              <Route path="/createPlayer" element={<CreatePlayerPage/>} />
+              <Route path="/updatePlayer/:id" element={<UpdatePlayerPage/>}/>
+              <Route path="/article/new" element={<CreateNewsPage/>}/>
+              <Route path="/articles/:id" element={<ReadNewsPage/>}/>
+              <Route path="/articles/update/:id" element={<UpdateArticlePage/>}/>
+              <Route path="/articles" element={<NewsPage/>}/>
+              <Route path="createUser" element={<CreateUserPage />}/>
+              <Route path="*" element={<PageNotFound/>}/>
+            </Route> 
+            
+            <Route path="/login" element={<LogInPage />}/> 
           </Routes>
-          <Footer/>
-        </main>  
+         
       </TokenAuth>  
     ); 
 

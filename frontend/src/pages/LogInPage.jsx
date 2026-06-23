@@ -36,6 +36,12 @@ export default function LogInPage(){
                     className="font-bold text-purple-700 hover:text-purple-800"
                 >
                     Create Account
+                </Link><br />
+                <Link
+                    to="/"
+                    className="font text-purple-500 hover:text-purple-800"
+                >
+                    Return Home
                 </Link>
                 </div>
 
