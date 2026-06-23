@@ -1,4 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
+import logoImg from "/img/logo1.png";
 
 function Sidebar() {
   const links = [
@@ -20,16 +21,12 @@ function Sidebar() {
   return (
     <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-64 bg-white border-r border-slate-200 px-6 py-6 flex-col">
       <Link to="/" className="mb-8 flex items-center">
-        <img src="/img/logo1.png" alt="HoopScout" className="h-18 w-auto" />
+        <img src={logoImg} alt="HoopScout" className="h-18 w-auto" />
         <div>
-            <h1 className="font-black text-xl text-slate-900">
-              HoopScout
-            </h1>
+          <h1 className="font-black text-xl text-slate-900">HoopScout</h1>
 
-            <p className="text-xs text-slate-500">
-              Recruiting Platform
-            </p>
-          </div>
+          <p className="text-xs text-slate-500">Recruiting Platform</p>
+        </div>
       </Link>
 
       <nav className="flex-1 space-y-1.5">
