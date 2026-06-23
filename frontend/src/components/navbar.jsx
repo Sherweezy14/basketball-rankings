@@ -11,9 +11,9 @@ function Navbar() {
 
   return (
     <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
-      <div className="h-48 justify-between  lg:max-w-7xl mx-auto pl-6 pr-20 h-20 flex items-center ">
+      <div className="h-30 justify-between  lg:max-w-7xl mx-auto pl-6 pr-20 h-20 flex items-center ">
         <Link to="/" className="lg:hidden flex items-center gap-3">
-          <img src={logoImg} alt="HoopScout" className="h-44 lg:h-18 w-auto" />
+          <img src={logoImg} alt="HoopScout" className="h-30 lg:h-18 w-auto" />
           <div>
             <h1 className="hidden lg:font-black text-xl text-slate-900">
               HoopScout
@@ -33,19 +33,19 @@ function Navbar() {
           
           {token && (<Link to="/createplayer" className="bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl lg:mt-0">+ Add Player</Link>)}
           
-          <UserLogin className=""/>
+          
         </div>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="text-7xl lg:hidden text-8xl font-bold text-slate-900"
+          className="text-5xl lg:hidden  font-bold text-slate-900"
         >
           ☰
         </button>
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-200 text-4xl px-6 py-4 space-y-4">
+        <div className="lg:hidden bg-white border-t border-slate-200 text-xl px-6 py-4 space-y-4">
           <Link onClick={() => setMenuOpen(false)} to="/" className="block font-semibold text-slate-700">
             Rankings
           </Link>
@@ -58,11 +58,11 @@ function Navbar() {
             Events
           </Link>
 
-          <SearchPlayers className="border-1 "/>
+          <SearchPlayers className=" border-1 "/>
 
           {token && (<Link to="/createplayer" className="bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl">+ Add Player</Link>)}
-          
-          <UserLogin className=""/>
+         
+        
         </div>
       )}
     </nav>
