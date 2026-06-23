@@ -11,9 +11,9 @@ function Navbar() {
 
   return (
     <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
-      <div className="h-30 justify-between  lg:max-w-7xl mx-auto pl-6 pr-20 h-20 flex items-center ">
+      <div className="h-22 justify-between  lg:max-w-7xl mx-auto px-6 h-20 flex items-center ">
         <Link to="/" className="lg:hidden flex items-center gap-3">
-          <img src={logoImg} alt="HoopScout" className="h-30 lg:h-18 w-auto" />
+          <img src={logoImg} alt="HoopScout" className="h-18 lg:h-18 w-auto" />
           <div>
             <h1 className="hidden lg:font-black text-xl text-slate-900">
               HoopScout
@@ -56,6 +56,10 @@ function Navbar() {
 
           <Link onClick={() => setMenuOpen(false)} to="/" className="block font-semibold text-slate-700">
             Events
+          </Link>
+
+          <Link onClick={() => setMenuOpen(false)} to="/login" className="block font-semibold text-slate-700">
+            Login
           </Link>
 
           <SearchPlayers className=" border-1 "/>

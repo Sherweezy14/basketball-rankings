@@ -4,9 +4,9 @@ function TopPlayers({ players }) {
   const topFive = players.slice(0, 5);
 
   return (
-    <section className="max-w-xl md:max-w-7xl mx-auto px-6 py-10 lg:py-0">
-      <div className="flex flex-col items-center mb-6 lg:flex-row lg:items-end lg:justify-between">
-        <div className="text-center my-5 mx-2 pt-5 lg:text-left lg:my-0 ">
+    <section className="max-w-xl md:max-w-7xl mx-auto px-6 py-5 lg:py-5">
+      <div className="flex flex-col items-center mb-1 lg:flex-row lg:items-end lg:justify-between">
+        <div className="text-center my-5 mx-2 lg:text-left lg:my-0 ">
           <span className="bg-amber-400 text-purple-950 text-xl font-bold rounded-full px-2 py-2 lg:text-base lg:px-2 lg:py-1 ">
             Featured Prospects
           </span>
