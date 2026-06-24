@@ -16,7 +16,7 @@ import UpdateArticlePage from "./pages/updatearticle";
 import CreateUserPage from "./pages/createUserPage";
 import { TokenAuth } from "./context/tokencontext";
 import LogInPage from "./pages/LogInPage";
-import ProtectedRoute from "./components/protectedroutes";
+import ProtectedRoute from "./components/protectedRoutes";
 function App() {
   function Layout() {
     return (
@@ -47,16 +47,37 @@ function App() {
           <Route
             path="/createPlayer"
             element={
-              <ProtectedRoute role="create_player">
+              <ProtectedRoute permission="create_player">
                 <CreatePlayerPage />
               </ProtectedRoute>
             }
           />
 
-          <Route path="/updatePlayer/:id" element={<UpdatePlayerPage />} />
-          <Route path="/article/new" element={<CreateNewsPage />} />
+          <Route
+            path="/updatePlayer/:id"
+            element={
+              <ProtectedRoute permission="update_player">
+                <UpdatePlayerPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/article/new"
+            element={
+              <ProtectedRoute permission="create_article">
+                <CreateNewsPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/articles/:id" element={<ReadNewsPage />} />
-          <Route path="/articles/update/:id" element={<UpdateArticlePage />} />
+          <Route
+            path="/articles/update/:id"
+            element={
+              <ProtectedRoute permission="update_article">
+                <UpdateArticlePage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/articles" element={<NewsPage />} />
           <Route path="createUser" element={<CreateUserPage />} />
           <Route path="*" element={<PageNotFound />} />
