@@ -56,17 +56,21 @@ export function useRegexValidations() {
       message: " AAU Team must be under 50 characters",
     },
     title: {
-      check: /^[A-Za-z\s'-]{5,50}$/,
+      check: /^[\s\S]{5,100}$/,
       message: " Title must be bewtween 5-50 characters",
     },
     body: {
-      check: /^[A-Za-z\s'-]{50,10000}$/,
-      message: " Title must be at least 50 characters",
+      check: /^[\s\S]{50,10000}$/,
+      message: " Body must be at least 50 characters",
     },
   };
 
   function checkValidation(event) {
     const name = event.target.name.toLowerCase();
+    if (!regexTest[name]) {
+      return;
+    }
+
     if (
       regexTest[name].check.test(event.target.value) ||
       event.target.value === ""
