@@ -8,7 +8,7 @@ export default function ProtectedRoute({ children, permission }) {
   if (!userLoggedIn) {
     <Navigate to="/login" replace />;
   }
-  if (hasPermission(userLoggedIn.role, permission)) {
+  if (hasPermission(userLoggedIn?.role, permission)) {
     return children;
   }
   return <Home />;
