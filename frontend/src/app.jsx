@@ -16,6 +16,7 @@ import UpdateArticlePage from "./pages/updatearticle";
 import CreateUserPage from "./pages/createUserPage";
 import { TokenAuth } from "./context/tokencontext";
 import LogInPage from "./pages/LogInPage";
+import ProtectedRoute from "./components/protectedroutes";
 function App() {
   function Layout() {
     return (
@@ -42,7 +43,16 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/player/:id/:slug" element={<PlayerPage />} />
-          <Route path="/createPlayer" element={<CreatePlayerPage />} />
+
+          <Route
+            path="/createPlayer"
+            element={
+              <ProtectedRoute role="create_player">
+                <CreatePlayerPage />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="/updatePlayer/:id" element={<UpdatePlayerPage />} />
           <Route path="/article/new" element={<CreateNewsPage />} />
           <Route path="/articles/:id" element={<ReadNewsPage />} />

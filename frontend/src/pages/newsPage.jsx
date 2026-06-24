@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../util/playerApi";
 import { Link } from "react-router-dom";
 import { authUser } from "../context/tokencontext";
+import { hasPermission } from "../util/userpermissions";
 
 function NewsPage() {
   const [news, setNews] = useState([]);
-  const { token } = authUser();
+  const { userLoggedIn } = authUser();
   useEffect(() => {
     async function getNews() {
       const n = await getArticles();
@@ -34,10 +35,11 @@ function NewsPage() {
             </p>
           </div>
 
-          {token && (
-            <Link
-              to="/article/new"
-              className="
+          {userLoggedIn &&
+            hasPermission(userLoggedIn.role, "create_article") && (
+              <Link
+                to="/article/new"
+                className="
               bg-purple-700
               hover:bg-purple-800
               text-white
@@ -47,10 +49,10 @@ function NewsPage() {
               rounded-xl
               shadow-sm
             "
-            >
-              + New Article
-            </Link>
-          )}
+              >
+                + New Article
+              </Link>
+            )}
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
