@@ -5,7 +5,7 @@ import { authUser } from "../context/tokencontext";
 
 function NewsPage() {
   const [news, setNews] = useState([]);
-  const {token} = authUser()
+  const { token } = authUser();
   useEffect(() => {
     async function getNews() {
       const n = await getArticles();
@@ -18,7 +18,6 @@ function NewsPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto px-6 py-8">
-
         <div className="flex items-end justify-between mb-8">
           <div>
             <span className="bg-amber-400 text-purple-950 text-sm font-bold px-3 py-1 rounded-full">
@@ -30,13 +29,15 @@ function NewsPage() {
             </h1>
 
             <p className="mt-2 text-slate-500">
-              Rankings updates, commitments, recruiting news, and player features.
+              Rankings updates, commitments, recruiting news, and player
+              features.
             </p>
           </div>
 
-          {token && <Link
-            to="/article/new"
-            className="
+          {token && (
+            <Link
+              to="/article/new"
+              className="
               bg-purple-700
               hover:bg-purple-800
               text-white
@@ -46,9 +47,10 @@ function NewsPage() {
               rounded-xl
               shadow-sm
             "
-          >
-            + New Article
-          </Link>}
+            >
+              + New Article
+            </Link>
+          )}
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -68,9 +70,15 @@ function NewsPage() {
               "
             >
               <div className="h-48 bg-gradient-to-br from-purple-700 to-purple-500 flex items-center justify-center">
-                <span className="text-white text-6xl font-black">
-                  N
-                </span>
+                {article.image ? (
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span className="text-white text-7xl font-black">news</span>
+                )}
               </div>
 
               <div className="p-6">
