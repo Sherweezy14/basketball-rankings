@@ -2,8 +2,10 @@ import { useState } from "react";
 import { createUser } from "../util/playerApi";
 import { useNavigate } from "react-router-dom";
 import { useImageUpload } from "../hooks/useImageUpload";
+import { useRegexValidations } from "../hooks/useRegexValidations";
 
 function UserForm() {
+  const { errors, checkValidation } = useRegexValidations();
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -13,52 +15,8 @@ function UserForm() {
     phone: "",
   });
   const { isUploading, handleImgUpload, imgUploadError } = useImageUpload();
-  const [errors, setErrors] = useState({});
-
-  const regexTest = {
-    name: {
-      check: /^[A-Za-z\s'-]{1,50}$/,
-      message: " Name must be under 50 characters",
-    },
-    role: {
-      check: /^[A-Za-z\s'-]{1,50}$/,
-      message: " Name must be under 50 characters",
-    },
-    phone: {
-      check: /^(\+1\s?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/,
-      message: "Must be a valid phone number",
-    },
-    email: {
-      check: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: " Must be a valid email",
-    },
-    password: {
-      check: /^(?=.*[A-Za-z])(?=.*\d).{8,}$/,
-      message: " Must be at least 8 characters and include a number and letter",
-    },
-    image: {
-      check: /\.(jpg|jpeg|png)$/i,
-      message: " Name be a jpg,jpeg, or png",
-    },
-  };
 
   const navigate = useNavigate();
-  // Check each field input against regex
-  // if it matches remove error if it fails add err
-  function checkValidation(event) {
-    if (
-      regexTest[event.target.name].check.test(event.target.value) ||
-      event.target.value === ""
-    ) {
-      const { [event.target.name]: value, ...left } = errors;
-      setErrors(left);
-    } else {
-      setErrors({
-        ...errors,
-        [event.target.name]: regexTest[event.target.name].message,
-      });
-    }
-  }
 
   async function handleImgChange(event) {
     const file = event.target.files[0];
