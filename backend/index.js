@@ -98,10 +98,10 @@ app.post("/createuser", async (req, res) => {
     const password = await bcrypt.hash(req.body.password, 10);
     req.body.password = password;
     const user = await User.create(req.body);
-    res.json({ message: " Player created " });
+    res.json({ message: " User created " });
   } catch (error) {
     console.log(error);
-    res.json({ message: "Player not created " + error });
+    res.json({ message: "User not created " + error });
   }
 });
 // creates a new player

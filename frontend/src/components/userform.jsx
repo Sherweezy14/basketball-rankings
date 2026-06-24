@@ -37,7 +37,6 @@ function UserForm() {
     event.preventDefault();
 
     const user = await createUser(data);
-    console.log(user);
 
     navigate("/");
   }
