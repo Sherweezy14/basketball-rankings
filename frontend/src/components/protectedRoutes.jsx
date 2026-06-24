@@ -1,6 +1,7 @@
 import { authUser } from "../context/tokencontext";
 import { hasPermission } from "../util/userpermissions";
 import Home from "../pages/home";
+import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children, permission }) {
   const { userLoggedIn } = authUser();
