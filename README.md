@@ -10,7 +10,7 @@ https://hooprecruit.vercel.app/
 
 Recruiters and hiring managers can explore the administrative features using the demo account below:
 
-**Email:** [admin@hoopscout.com](mailto:admin@hoopscout.com)
+**Email:** [demo@demo.com](mailto:demo@demo.com)
 
 **Password:** hoopscout14
 
